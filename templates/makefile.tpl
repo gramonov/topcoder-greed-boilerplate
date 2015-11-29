@@ -1,28 +1,29 @@
 # Template for generated Makefile for easy testing
+# Simply run "make" command in the problem directory to run tests
 
 CXX=g++
 CXXFLAGS=-Wall -Wextra -O2
 LDFLAGS=
 
-RM=rm
+RM=rm -f
 
-SOURCES=${Problem.Name}.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
+SRCS=${Problem.Name}.cpp
+OBJS=$(SRCS:.cpp=.o)
 EXE=${Problem.Name}
 
-all: $(SOURCES) $(EXECUTABLE)
+all: run
+
+run: compile
+	./$(EXE)
 
 compile: $(EXE)
 
-$(EXE): $(OBJECTS)
-	$(CC) $(
+$(EXE): $(OBJS)
+	$(CXX) $(LDFLAGS) -o $@ $^
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
-
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+$(OBJS): $(SRCS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	$(RM) $(OBJECTS) $(EXECUTABLE)
+	$(RM) $(OBJS) $(EXE)

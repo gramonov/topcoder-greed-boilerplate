@@ -10,13 +10,16 @@ ${<if Problem.Description.Modulo}
 static const int MOD = ${Problem.Description.Modulo};
 ${<end}
 
+// CODE BEGIN
 class ${ClassName} {
  public:
   ${Method.ReturnType} ${Method.Name}(${Method.Params}) {
+    // YOUR CODE HERE
     return ${Method.ReturnType;zeroval};
   }
 };
 
+// CODE END
 ${CutBegin}
 ${<TestCode}
 ${CutEnd}
